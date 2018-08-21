@@ -1,0 +1,36 @@
+buildscript {
+  ext.versions = [
+    'kotlin' : '1.2.61',
+    'ktor' : '0.9.4-alpha-2',
+    'logback' : '1.2.1',
+    'appEngine' : '2.0.0-rc1',
+    'gceLogging' : '0.58.0-alpha',
+  ]
+
+  repositories {
+    mavenCentral()
+    jcenter()
+  }
+
+  dependencies {
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+    classpath "com.google.cloud.tools:appengine-gradle-plugin:${versions.appEngine}"
+  }
+}
+
+plugins {
+  id "com.github.ben-manes.versions" version "0.20.0"
+}
+
+subprojects {
+  repositories {
+    mavenCentral()
+    maven { url "https://kotlin.bintray.com/ktor" }
+    jcenter()
+  }
+}
+
+wrapper {
+  distributionType = Wrapper.DistributionType.ALL
+  gradleVersion = '4.10-rc-2'
+}
